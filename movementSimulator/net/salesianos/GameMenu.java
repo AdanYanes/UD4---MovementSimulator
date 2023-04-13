@@ -24,50 +24,54 @@ public class GameMenu {
         }
     }
 
-    public void moveCharacter(int coordValue){
-        if(coordValue == 1){
+    public void moveCharacter(String coorValue){ //TODO: Refactor this
+        if(coorValue.equals("S")){
             int movement = playableCharacter.getCurrentXPosition() + playableCharacter.getMoveSpeed();
-            if (ableToMoveX(movement)){
+
+            if (!ableToMoveX(movement)){
+                System.out.println("No puede avanzar en esta direccion");
+            }else if(ableToMoveX(movement)){
                 playableCharacter.setCurrentXPosition(movement);
-            }else if(ableToMoveX(movement - 1)){
+            }else{
                 playableCharacter.setCurrentXPosition(movement - 1);
-            }else{
-                System.out.println("Ha llegado al borde y no puede avanzar mas");
             }
 
-        }else if(coordValue == -1){
+        }else if(coorValue.equals("W")){
             int movement = playableCharacter.getCurrentXPosition() - playableCharacter.getMoveSpeed();
-            if (ableToMoveX(movement)){
+
+            if (!ableToMoveX(movement)){
+                System.out.println("No puede avanzar en esta direccion");
+            }else if(ableToMoveX(movement)){
                 playableCharacter.setCurrentXPosition(movement);
-            }else if(ableToMoveX(movement + 1)){
+            }else{
                 playableCharacter.setCurrentXPosition(movement + 1);
-            }else{
-                System.out.println("Ha llegado al borde y no puede avanzar mas");
             }
 
-        }else if(coordValue == 2){
+        }else if(coorValue.equals("D")){
             int movement = playableCharacter.getCurrentYPosition() + playableCharacter.getMoveSpeed();
-            if (ableToMoveY(movement)){
+
+            if (!ableToMoveY(movement)){
+                System.out.println("No puede avanzar en esta direccion");
+            }else if(ableToMoveY(movement)){
                 playableCharacter.setCurrentYPosition(movement);
-            }else if(ableToMoveY(movement - 1)){
-                playableCharacter.setCurrentYPosition(movement - 1);
             }else{
-                System.out.println("Ha llegado al borde y no puede avanzar mas");
+                playableCharacter.setCurrentYPosition(movement - 1);
             }
 
-        }else if(coordValue == -2){
+        }else if(coorValue.equals("A")){
             int movement = playableCharacter.getCurrentYPosition() - playableCharacter.getMoveSpeed();
-            if (ableToMoveY(movement)){
+
+            if (!ableToMoveY(movement)){
+                System.out.println("No puede avanzar en esta direccion");
+            }else if(ableToMoveY(movement)){
                 playableCharacter.setCurrentYPosition(movement);
-            }else if(ableToMoveY(movement + 1)){
-                playableCharacter.setCurrentYPosition(movement + 1);
             }else{
-                System.out.println("Ha llegado al borde y no puede avanzar mas");
+                playableCharacter.setCurrentYPosition(movement + 1);
             }
         }
     }
 
-    private boolean ableToMoveX(int moveValue){
+    private boolean ableToMoveX(int moveValue){ //TODO: Refactor this
         if (map.mapGrid[moveValue][playableCharacter.getCurrentYPosition()].toString().equals("#")){
             return false;
         }else{
@@ -75,7 +79,7 @@ public class GameMenu {
         }
     }
 
-    private boolean ableToMoveY(int moveValue){
+    private boolean ableToMoveY(int moveValue){ //TODO: Refactor this
         if (map.mapGrid[playableCharacter.getCurrentXPosition()][moveValue].toString().equals("#")){
             return false;
         }else{
@@ -85,12 +89,13 @@ public class GameMenu {
 
     public void setSpawnPoint(){
         int spawnCoords = Math.round(map.mapGrid.length/2);
-        playableCharacter.setCurrentXPosition(spawnCoords);
-        playableCharacter.setCurrentYPosition(spawnCoords);
 
         if (map.mapGrid[spawnCoords][spawnCoords].toString().equals("#")){
             map.mapGrid[spawnCoords][spawnCoords] = "X";
         }
+
+        playableCharacter.setCurrentXPosition(spawnCoords);
+        playableCharacter.setCurrentYPosition(spawnCoords);
     }
 
     public void showMap(){
@@ -104,8 +109,20 @@ public class GameMenu {
         }
     }
 
+    public void showMapKey(){
+        System.out.println("# -> Colision del mapa (No accesible)");
+        System.out.println("X -> Suelo del mapa (Accesible)");
+        System.out.println("O -> Posición del personaje (Caminando)");
+        System.out.println("X -> Posición del personaje (En bicicleta)");
+    }
+
     private String[][] updateMap(){
-        String[][] updatedMap = map.mapGrid;
+        String[][] updatedMap = new String[map.mapGrid.length][map.mapGrid[0].length]; //I generate a "second map" to leave intact the original one
+        for (int i = 0; i < map.mapGrid.length; i++) {
+            for (int j = 0; j < map.mapGrid[i].length; j++) {
+                updatedMap[i][j] = map.mapGrid[i][j];
+            }
+        }
 
         if(isInBike){
             updatedMap[playableCharacter.getCurrentXPosition()][playableCharacter.getCurrentYPosition()] = "8";
