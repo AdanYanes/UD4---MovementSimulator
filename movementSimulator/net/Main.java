@@ -10,7 +10,7 @@ public class Main{
 
         GameMenu menu = new GameMenu();
 
-        menu.map.setMapSize(7);
+        menu.map.setMapSize(10);
 
         menu.setSpawnPoint();
 

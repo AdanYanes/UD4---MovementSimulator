@@ -24,67 +24,48 @@ public class GameMenu {
         }
     }
 
-    public void moveCharacter(String coorValue){ //TODO: Refactor this
-        if(coorValue.equals("S")){
-            int movement = playableCharacter.getCurrentXPosition() + playableCharacter.getMoveSpeed();
+    public void moveCharacter(String coorValue) {
+        int movement = 0;
 
-            if (!ableToMoveX(movement)){
-                System.out.println("No puede avanzar en esta direccion");
-            }else if(ableToMoveX(movement)){
+        if (coorValue.equals("S")) {
+            movement = playableCharacter.getCurrentXPosition() + playableCharacter.getMoveSpeed();
+        } else if (coorValue.equals("W")) {
+            movement = playableCharacter.getCurrentXPosition() - playableCharacter.getMoveSpeed();
+        } else if (coorValue.equals("D")) {
+            movement = playableCharacter.getCurrentYPosition() + playableCharacter.getMoveSpeed();
+        } else if (coorValue.equals("A")) {
+            movement = playableCharacter.getCurrentYPosition() - playableCharacter.getMoveSpeed();
+        }
+
+        if (!ableToMove(movement, coorValue)) {
+            System.out.println("No puede avanzar en esta direccion");
+        } else {
+            if (coorValue.equals("S") || coorValue.equals("W")) {
                 playableCharacter.setCurrentXPosition(movement);
-            }else{
-                playableCharacter.setCurrentXPosition(movement - 1);
-            }
-
-        }else if(coorValue.equals("W")){
-            int movement = playableCharacter.getCurrentXPosition() - playableCharacter.getMoveSpeed();
-
-            if (!ableToMoveX(movement)){
-                System.out.println("No puede avanzar en esta direccion");
-            }else if(ableToMoveX(movement)){
-                playableCharacter.setCurrentXPosition(movement);
-            }else{
-                playableCharacter.setCurrentXPosition(movement + 1);
-            }
-
-        }else if(coorValue.equals("D")){
-            int movement = playableCharacter.getCurrentYPosition() + playableCharacter.getMoveSpeed();
-
-            if (!ableToMoveY(movement)){
-                System.out.println("No puede avanzar en esta direccion");
-            }else if(ableToMoveY(movement)){
+            } else {
                 playableCharacter.setCurrentYPosition(movement);
-            }else{
-                playableCharacter.setCurrentYPosition(movement - 1);
-            }
-
-        }else if(coorValue.equals("A")){
-            int movement = playableCharacter.getCurrentYPosition() - playableCharacter.getMoveSpeed();
-
-            if (!ableToMoveY(movement)){
-                System.out.println("No puede avanzar en esta direccion");
-            }else if(ableToMoveY(movement)){
-                playableCharacter.setCurrentYPosition(movement);
-            }else{
-                playableCharacter.setCurrentYPosition(movement + 1);
             }
         }
     }
 
-    private boolean ableToMoveX(int moveValue){ //TODO: Refactor this
-        if (map.mapGrid[moveValue][playableCharacter.getCurrentYPosition()].toString().equals("#")){
-            return false;
-        }else{
-            return true;
-        }
-    }
+    private boolean ableToMove(int moveValue, String coorValue) {
+        int moveSpeed = playableCharacter.getMoveSpeed();
 
-    private boolean ableToMoveY(int moveValue){ //TODO: Refactor this
-        if (map.mapGrid[playableCharacter.getCurrentXPosition()][moveValue].toString().equals("#")){
-            return false;
-        }else{
-            return true;
+        if (coorValue.equals("S") || coorValue.equals("W")) {
+            for (int i = 0; i < moveSpeed; i++) {
+                if (map.mapGrid[moveValue + i][playableCharacter.getCurrentYPosition()].equals("#")) {
+                    return false;
+                }
+            }
+        } else {
+            for (int i = 0; i < moveSpeed; i++) {
+                if (map.mapGrid[playableCharacter.getCurrentXPosition()][moveValue + i].equals("#")) {
+                    return false;
+                }
+            }
         }
+
+        return true;
     }
 
     public void setSpawnPoint(){
