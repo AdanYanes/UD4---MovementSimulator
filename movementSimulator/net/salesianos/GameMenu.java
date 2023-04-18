@@ -99,6 +99,7 @@ public class GameMenu {
 
     private String[][] updateMap(){
         String[][] updatedMap = new String[map.mapGrid.length][map.mapGrid[0].length]; //I generate a "second map" to leave intact the original one
+        
         for (int i = 0; i < map.mapGrid.length; i++) {
             for (int j = 0; j < map.mapGrid[i].length; j++) {
                 updatedMap[i][j] = map.mapGrid[i][j];
