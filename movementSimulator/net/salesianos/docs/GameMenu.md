@@ -1,6 +1,6 @@
 # GameMenu
 
-This class serves as a link between the [character](../docs/Character.md) class and the [map](../docs/Map.md) one. We find several methods in here.
+This class serves as a link between the [character](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Character.md) class and the [map](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Map.md) one. We find several methods in here.
 
 1. mountBike(): this one is and if-else statement checking if the player is already mounted on a bike. we are able to check this thanks to a 
 bolean variable called **isInBike**. In case this boolean is true, the methods will print us an error, if not, boolean becomes true and the player 
@@ -16,4 +16,4 @@ move speed change.
 
 6. showMap(): It print the player the map thanks to a for loop inside another for loop
 
-7. updateMap(): This methods create a new 2d array based on the map we create in the [Map.java class](../docs/Map.md) and check for the player position and print it depending on the boolean isInBike. 
+7. updateMap(): This methods create a new 2d array based on the map we create in the [Map.java class](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Map.md) and check for the player position and print it depending on the boolean isInBike. 
