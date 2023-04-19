@@ -1,6 +1,7 @@
 package movementSimulator.net;
 
 import movementSimulator.net.salesianos.GameMenu;
+import movementSimulator.net.salesianos.Map;
 import movementSimulator.net.salesianos.utils.StaticScanner;
 
 public class Main{
@@ -10,11 +11,12 @@ public class Main{
 
         GameMenu menu = new GameMenu();
 
-        menu.map.setMapSize(10);
-
-        menu.setSpawnPoint();
-
         System.out.println("Bienvenido, jugador");
+        System.out.println("Por favor, introduzca el tamaño que desea para el mapa");
+        int mapSize = Integer.parseInt(StaticScanner.scanner.nextLine());
+
+        menu.map = new Map(mapSize);
+        menu.setSpawnPoint();
 
         while(option != 0){
             System.out.println("Por favor, elija una de las siguientes opciones");

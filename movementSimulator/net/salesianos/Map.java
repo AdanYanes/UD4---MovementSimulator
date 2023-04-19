@@ -6,7 +6,7 @@ public class Map {
     private int mapSize;
     String mapGrid[][];
 
-    public void setMapSize(int mapSize) {
+    public Map(int mapSize) {
         this.mapSize = mapSize;
         mapGrid = MapGenerator.mapGenerator(this.mapSize);
     }

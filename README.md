@@ -23,9 +23,9 @@ After You complete the download and being able to open the project, just head to
 At first, the game will ask you for the map size. Once you input the lenght, the game will show up a menu asking for the player 
 for an option.
 
-Follow [this](../docs/Main.md) to check the Main.java documentation.
-Follow [this](../docs/Map.md) to check the Map.java documentation.
-Follow [this](../docs/MapGenerator.md) to check the MapGenerator.java documentation.
-Follow [this](../docs/GameMenu.md) to check the GameMenu.java documentation.
-Follow [this](../docs/Character.md) to check the Character.java documentation.
-Follow [this](../docs/StaticScanner.md) to check the StaticScanner.java documentation.
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Main.md) to check the Main.java documentation. <br>
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Map.md) to check the Map.java documentation. <br>
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/MapGenerator.md) to check the MapGenerator.java documentation. <br>
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/GameMenu.md) to check the GameMenu.java documentation. <br>
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/Character.md) to check the Character.java documentation. <br>
+Follow [this](https://github.com/AdanYanes/UD4---MovementSimulator/blob/main/movementSimulator/net/salesianos/docs/StaticScanner.md) to check the StaticScanner.java documentation. <br>

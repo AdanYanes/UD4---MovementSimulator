@@ -2,7 +2,7 @@ package movementSimulator.net.salesianos;
 
 public class GameMenu {
     private Character playableCharacter = new Character("default");
-    public Map map = new Map();
+    public Map map;
 
     public boolean isInBike = false;
 
@@ -25,20 +25,25 @@ public class GameMenu {
     }
 
     public void moveCharacter(String coorValue) {
-        int movement = 0;
 
-        if (coorValue.equals("S")) {
-            movement = playableCharacter.getCurrentXPosition() + playableCharacter.getMoveSpeed();
-        } else if (coorValue.equals("W")) {
-            movement = playableCharacter.getCurrentXPosition() - playableCharacter.getMoveSpeed();
-        } else if (coorValue.equals("D")) {
-            movement = playableCharacter.getCurrentYPosition() + playableCharacter.getMoveSpeed();
-        } else if (coorValue.equals("A")) {
-            movement = playableCharacter.getCurrentYPosition() - playableCharacter.getMoveSpeed();
-        }
+        int movement = setMovement(playableCharacter.getMoveSpeed(), coorValue);
 
         if (!ableToMove(movement, coorValue)) {
-            System.out.println("No puede avanzar en esta direccion");
+            if (isInBike){
+                movement = setMovement(playableCharacter.getWALKING_SPEED(), coorValue);
+                if(!ableToMove(movement, coorValue)){
+                    System.out.println("No puede avanzar en esta direccion");
+                }else{
+                    if (coorValue.equals("S") || coorValue.equals("W")) {
+                        playableCharacter.setCurrentXPosition(movement);
+                    } else {
+                        playableCharacter.setCurrentYPosition(movement);
+                    }
+                }
+
+            }else{
+                System.out.println("No puede avanzar en esta direccion");
+            }
         } else {
             if (coorValue.equals("S") || coorValue.equals("W")) {
                 playableCharacter.setCurrentXPosition(movement);
@@ -46,6 +51,21 @@ public class GameMenu {
                 playableCharacter.setCurrentYPosition(movement);
             }
         }
+    }
+
+    private int setMovement(int movement, String coorValue){
+        int movementOutput = 0;
+        if (coorValue.equals("S")) {
+            movementOutput = playableCharacter.getCurrentXPosition() + movement;
+        } else if (coorValue.equals("W")) {
+            movementOutput = playableCharacter.getCurrentXPosition() - movement;
+        } else if (coorValue.equals("D")) {
+            movementOutput = playableCharacter.getCurrentYPosition() + movement;
+        } else if (coorValue.equals("A")) {
+            movementOutput = playableCharacter.getCurrentYPosition() - movement;
+        }
+
+        return movementOutput;
     }
 
     private boolean ableToMove(int moveValue, String coorValue) {
